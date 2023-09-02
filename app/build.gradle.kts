@@ -43,7 +43,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.3"
+        kotlinCompilerExtensionVersion = ProjectConfig.composeCompilerVersion
     }
     packaging {
         resources {
@@ -73,6 +73,7 @@ dependencies {
     implementation(libs.androidx.nav.compose)
     implementation(libs.androidx.splashscreen)
     implementation(libs.coil)
+    implementation(libs.appcompat)
 
     // Lifecycle
     implementation(libs.lifecycle.runtime.ktx)
