@@ -1,4 +1,4 @@
-package com.gumu.calorietracker.ui.theme
+package com.gumu.core_ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes

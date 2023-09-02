@@ -53,6 +53,7 @@ dependencies {
     implementation libs.compose.ui
     implementation libs.compose.graphics
     implementation libs.compose.tooling.preview
+    implementation libs.compose.tooling
     implementation libs.material3
     implementation libs.icons.extended
     implementation libs.androidx.nav.compose
