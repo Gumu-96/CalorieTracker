@@ -16,12 +16,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.gumu.core_ui.R
+import com.gumu.core_ui.navigation.Screen
 import com.gumu.core_ui.theme.CalorieTrackerTheme
 import com.gumu.core_ui.theme.LocalSpacing
+import com.gumu.core_ui.util.UiEvent
 import com.gumu.onboarding_presentation.components.ActionButton
 
 @Composable
-fun WelcomeScreen() {
+fun WelcomeScreen(
+    onNavigate: (UiEvent.Navigate) -> Unit
+) {
     val spacing = LocalSpacing.current
     Surface {
         Column(
@@ -39,7 +43,7 @@ fun WelcomeScreen() {
             Spacer(modifier = Modifier.height(spacing.spaceMedium))
             ActionButton(
                 text = stringResource(id = R.string.next),
-                onClick = {}
+                onClick = { onNavigate(UiEvent.Navigate(Screen.Age.route)) }
             )
         }
     }
@@ -49,6 +53,6 @@ fun WelcomeScreen() {
 @Composable
 fun WelcomeScreenPreview() {
     CalorieTrackerTheme {
-        WelcomeScreen()
+        WelcomeScreen {}
     }
 }
