@@ -101,6 +101,9 @@ dependencies {
     implementation(libs.room.runtime)
     kapt(libs.room.compiler)
 
+    // DataStore
+    implementation(libs.datastore.preferences)
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)

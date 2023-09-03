@@ -10,4 +10,6 @@ android {
     namespace = "com.gumu.core"
 }
 
-dependencies {}
+dependencies {
+    "implementation"(libs.datastore.preferences)
+}
