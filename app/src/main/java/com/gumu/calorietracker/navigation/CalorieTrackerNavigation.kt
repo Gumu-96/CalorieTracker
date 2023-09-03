@@ -8,6 +8,8 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.gumu.core_ui.navigation.Screen
+import com.gumu.onboarding_presentation.age.AgeScreen
+import com.gumu.onboarding_presentation.age.AgeViewModel
 import com.gumu.onboarding_presentation.gender.GenderScreen
 import com.gumu.onboarding_presentation.gender.GenderViewModel
 import com.gumu.onboarding_presentation.welcome.WelcomeScreen
@@ -32,6 +34,14 @@ fun CalorieTrackerNavigation() {
             )
         }
         composable(route = Screen.Age.route) {
+            val viewModel: AgeViewModel = hiltViewModel()
+            val age by viewModel.age.collectAsState()
+            AgeScreen(
+                onNavigate = { navController.navigate(it) },
+                age = age,
+                uiEvents = viewModel.uiEvent,
+                onEvent = viewModel::onEvent
+            )
         }
         composable(route = Screen.Height.route) {
         }
