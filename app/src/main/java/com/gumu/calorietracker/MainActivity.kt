@@ -3,6 +3,7 @@ package com.gumu.calorietracker
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.material3.Surface
 import com.gumu.calorietracker.navigation.CalorieTrackerNavigation
 import com.gumu.core_ui.theme.CalorieTrackerTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -13,7 +14,9 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             CalorieTrackerTheme {
-                CalorieTrackerNavigation()
+                Surface {
+                    CalorieTrackerNavigation()
+                }
             }
         }
     }
