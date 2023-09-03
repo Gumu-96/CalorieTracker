@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -28,8 +27,8 @@ fun SelectableButton(
     modifier: Modifier = Modifier,
     text: String,
     isSelected: Boolean,
-    color: Color,
-    selectedColor: Color,
+    color: Color = MaterialTheme.colorScheme.surfaceVariant,
+    selectedColor: Color = MaterialTheme.colorScheme.onSurfaceVariant,
     onClick: () -> Unit
 ) {
     Box(
@@ -65,16 +64,12 @@ private fun SelectableButtonPreview() {
             SelectableButton(
                 text = "Option 1",
                 isSelected = true,
-                color = MaterialTheme.colorScheme.surfaceVariant,
-                selectedColor = MaterialTheme.colorScheme.onSurfaceVariant,
                 onClick = {}
             )
             Spacer(modifier = Modifier.height(16.dp))
             SelectableButton(
                 text = "Option 2",
                 isSelected = false,
-                color = MaterialTheme.colorScheme.surfaceVariant,
-                selectedColor = MaterialTheme.colorScheme.onSurfaceVariant,
                 onClick = {}
             )
         }
