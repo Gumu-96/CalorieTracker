@@ -25,7 +25,7 @@ fun ActionButton(
 
 @Preview
 @Composable
-fun ActionButtonPreview() {
+private fun ActionButtonPreview() {
     CalorieTrackerTheme {
         ActionButton(text = "Do Something") {}
     }

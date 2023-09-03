@@ -51,7 +51,7 @@ fun WelcomeScreen(
 
 @Preview
 @Composable
-fun WelcomeScreenPreview() {
+private fun WelcomeScreenPreview() {
     CalorieTrackerTheme {
         WelcomeScreen {}
     }
