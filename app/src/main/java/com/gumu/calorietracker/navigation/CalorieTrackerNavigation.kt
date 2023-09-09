@@ -18,6 +18,8 @@ import com.gumu.onboarding_presentation.goal.GoalScreen
 import com.gumu.onboarding_presentation.goal.GoalViewModel
 import com.gumu.onboarding_presentation.height.HeightScreen
 import com.gumu.onboarding_presentation.height.HeightViewModel
+import com.gumu.onboarding_presentation.nutrient_goal.NutrientGoalScreen
+import com.gumu.onboarding_presentation.nutrient_goal.NutrientGoalViewModel
 import com.gumu.onboarding_presentation.weight.WeightScreen
 import com.gumu.onboarding_presentation.weight.WeightViewModel
 import com.gumu.onboarding_presentation.welcome.WelcomeScreen
@@ -92,6 +94,14 @@ fun CalorieTrackerNavigation() {
             )
         }
         composable(route = Screen.NutrientGoal.route) {
+            val viewModel: NutrientGoalViewModel = hiltViewModel()
+            val uiState by viewModel.uiState.collectAsState()
+            NutrientGoalScreen(
+                onNavigate = { navController.navigate(it) },
+                uiState = uiState,
+                uiEvents = viewModel.uiEvent,
+                onEvent = viewModel::onEvent
+            )
         }
 
         // Tracker
