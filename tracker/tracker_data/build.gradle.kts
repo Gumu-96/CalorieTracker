@@ -14,8 +14,6 @@ dependencies {
     "implementation"(project(Modules.core))
     "implementation"(project(Modules.trackerDomain))
 
-    "implementation"(libs.core.ktx)
-
     // Retrofit
     "implementation"(libs.retrofit)
     "implementation"(libs.retrofit.converter.gson)
