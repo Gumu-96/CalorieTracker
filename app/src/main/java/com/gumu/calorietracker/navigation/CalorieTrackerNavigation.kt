@@ -8,10 +8,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.gumu.core_ui.navigation.Screen
+import com.gumu.onboarding_presentation.activity.ActivityScreen
+import com.gumu.onboarding_presentation.activity.ActivityViewModel
 import com.gumu.onboarding_presentation.age.AgeScreen
 import com.gumu.onboarding_presentation.age.AgeViewModel
 import com.gumu.onboarding_presentation.gender.GenderScreen
 import com.gumu.onboarding_presentation.gender.GenderViewModel
+import com.gumu.onboarding_presentation.goal.GoalScreen
+import com.gumu.onboarding_presentation.goal.GoalViewModel
 import com.gumu.onboarding_presentation.height.HeightScreen
 import com.gumu.onboarding_presentation.height.HeightViewModel
 import com.gumu.onboarding_presentation.weight.WeightScreen
@@ -67,11 +71,27 @@ fun CalorieTrackerNavigation() {
                 onEvent = viewModel::onEvent
             )
         }
-        composable(route = Screen.NutrientGoal.route) {
-        }
         composable(route = Screen.Activity.route) {
+            val viewModel: ActivityViewModel = hiltViewModel()
+            val selectedActivity by viewModel.selectedActivity.collectAsState()
+            ActivityScreen(
+                onNavigate = { navController.navigate(it) },
+                selectedActivity = selectedActivity,
+                uiEvents = viewModel.uiEvent,
+                onEvent = viewModel::onEvent
+            )
         }
         composable(route = Screen.Goal.route) {
+            val viewModel: GoalViewModel = hiltViewModel()
+            val selectedGoal by viewModel.selectedGoal.collectAsState()
+            GoalScreen(
+                onNavigate = { navController.navigate(it) },
+                selectedGoal = selectedGoal,
+                uiEvents = viewModel.uiEvent,
+                onEvent = viewModel::onEvent
+            )
+        }
+        composable(route = Screen.NutrientGoal.route) {
         }
 
         // Tracker
