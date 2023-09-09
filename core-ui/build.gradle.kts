@@ -10,4 +10,6 @@ android {
     namespace = "com.gumu.core_ui"
 }
 
-dependencies {}
+dependencies {
+    "implementation"(project(Modules.core))
+}

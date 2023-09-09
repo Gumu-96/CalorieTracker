@@ -6,7 +6,7 @@ import com.gumu.core.domain.preferences.DataPreferences
 import com.gumu.core_ui.R
 import com.gumu.core_ui.navigation.Screen
 import com.gumu.core_ui.util.UiEvent
-import com.gumu.core_ui.util.UiText
+import com.gumu.core.util.UiText
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow

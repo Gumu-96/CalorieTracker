@@ -1,4 +1,4 @@
-package com.gumu.core_ui.util
+package com.gumu.core.util
 
 import android.content.Context
 import androidx.annotation.StringRes
