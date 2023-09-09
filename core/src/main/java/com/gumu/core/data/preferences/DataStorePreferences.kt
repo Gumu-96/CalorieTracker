@@ -17,7 +17,7 @@ import kotlinx.coroutines.flow.map
 class DataStorePreferences(
     private val dataStore: DataStore<Preferences>
 ) : DataPreferences {
-    private suspend fun <T : Any> saveData(key: Preferences.Key<T>, data: T) {
+    private suspend fun <T> saveData(key: Preferences.Key<T>, data: T) {
         dataStore.edit { it[key] = data }
     }
 
