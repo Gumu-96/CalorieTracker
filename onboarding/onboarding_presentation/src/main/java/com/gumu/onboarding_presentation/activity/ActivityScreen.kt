@@ -19,8 +19,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import com.gumu.core.R
 import com.gumu.core.domain.model.ActivityLevel
-import com.gumu.core_ui.R
 import com.gumu.core_ui.theme.CalorieTrackerTheme
 import com.gumu.core_ui.theme.LocalSpacing
 import com.gumu.core_ui.util.UiEvent
