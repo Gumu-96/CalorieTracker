@@ -12,6 +12,10 @@ import com.gumu.onboarding_presentation.age.AgeScreen
 import com.gumu.onboarding_presentation.age.AgeViewModel
 import com.gumu.onboarding_presentation.gender.GenderScreen
 import com.gumu.onboarding_presentation.gender.GenderViewModel
+import com.gumu.onboarding_presentation.height.HeightScreen
+import com.gumu.onboarding_presentation.height.HeightViewModel
+import com.gumu.onboarding_presentation.weight.WeightScreen
+import com.gumu.onboarding_presentation.weight.WeightViewModel
 import com.gumu.onboarding_presentation.welcome.WelcomeScreen
 
 @Composable
@@ -44,8 +48,24 @@ fun CalorieTrackerNavigation() {
             )
         }
         composable(route = Screen.Height.route) {
+            val viewModel: HeightViewModel = hiltViewModel()
+            val height by viewModel.height.collectAsState()
+            HeightScreen(
+                onNavigate = { navController.navigate(it) },
+                height = height,
+                uiEvents = viewModel.uiEvent,
+                onEvent = viewModel::onEvent
+            )
         }
         composable(route = Screen.Weight.route) {
+            val viewModel: WeightViewModel = hiltViewModel()
+            val weight by viewModel.weight.collectAsState()
+            WeightScreen(
+                onNavigate = { navController.navigate(it) },
+                weight = weight,
+                uiEvents = viewModel.uiEvent,
+                onEvent = viewModel::onEvent
+            )
         }
         composable(route = Screen.NutrientGoal.route) {
         }
