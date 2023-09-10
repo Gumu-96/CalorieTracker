@@ -18,4 +18,7 @@ interface DataPreferences {
     suspend fun saveFatRatio(ratio: Float)
 
     fun loadUserInfo(): Flow<UserInfo>
+
+    suspend fun saveShouldShowOnboarding(shouldShow: Boolean)
+    fun getShouldShowOnboarding(): Flow<Boolean>
 }

@@ -2,6 +2,7 @@ package com.gumu.core.data.preferences
 
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.floatPreferencesKey
 import androidx.datastore.preferences.core.intPreferencesKey
@@ -19,6 +20,10 @@ class DataStorePreferences(
 ) : DataPreferences {
     private suspend fun <T> saveData(key: Preferences.Key<T>, data: T) {
         dataStore.edit { it[key] = data }
+    }
+
+    private fun <T> getData(key: Preferences.Key<T>, default: T): Flow<T> {
+        return dataStore.data.map { it[key] ?: default }
     }
 
     override suspend fun saveGender(gender: Gender) = saveData(GENDER_KEY, gender.name)
@@ -59,6 +64,12 @@ class DataStorePreferences(
         }
     }
 
+    override suspend fun saveShouldShowOnboarding(shouldShow: Boolean) =
+        saveData(SHOULD_SHOW_ONBOARDING_KEY, shouldShow)
+
+    override fun getShouldShowOnboarding(): Flow<Boolean> =
+        getData(SHOULD_SHOW_ONBOARDING_KEY, true)
+
     companion object {
         private val GENDER_KEY = stringPreferencesKey("gender_key")
         private val AGE_KEY = intPreferencesKey("age_key")
@@ -69,5 +80,6 @@ class DataStorePreferences(
         private val CARB_RATIO_KEY = floatPreferencesKey("carb_ratio_key")
         private val PROTEIN_RATIO_KEY = floatPreferencesKey("protein_ratio_key")
         private val FAT_RATIO_KEY = floatPreferencesKey("fat_ratio_key")
+        private val SHOULD_SHOW_ONBOARDING_KEY = booleanPreferencesKey("should_show_onboarding_key")
     }
 }
