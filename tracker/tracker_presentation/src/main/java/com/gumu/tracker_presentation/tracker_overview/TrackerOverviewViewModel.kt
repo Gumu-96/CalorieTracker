@@ -35,6 +35,7 @@ class TrackerOverviewViewModel @Inject constructor(
     init {
         viewModelScope.launch {
             dataPrefs.saveShouldShowOnboarding(false)
+            refreshFoods()
         }
     }
 
