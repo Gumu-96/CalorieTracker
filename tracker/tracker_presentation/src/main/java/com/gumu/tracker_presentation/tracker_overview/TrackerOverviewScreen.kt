@@ -1,6 +1,7 @@
 package com.gumu.tracker_presentation.tracker_overview
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
@@ -10,6 +11,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.gumu.core_ui.theme.CalorieTrackerTheme
 import com.gumu.core_ui.theme.LocalSpacing
 import com.gumu.core_ui.util.UiEvent
+import com.gumu.tracker_presentation.tracker_overview.components.DaySelector
 import com.gumu.tracker_presentation.tracker_overview.components.NutrientsHeader
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -39,6 +41,14 @@ fun TrackerOverviewScreen(
     ) {
         item {
             NutrientsHeader(state = uiState)
+            DaySelector(
+                date = uiState.date,
+                onPreviousDayClick = { onEvent(TrackerOverviewEvent.PreviousDayClick) },
+                onNextDayClick = { onEvent(TrackerOverviewEvent.NextDayClick) },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(spacing.spaceSmall)
+            )
         }
     }
 }

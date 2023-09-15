@@ -47,8 +47,8 @@ fun NutrientsHeader(
             .fillMaxWidth()
             .clip(
                 RoundedCornerShape(
-                    bottomStart = 50.dp,
-                    bottomEnd = 50.dp
+                    bottomStart = 35.dp,
+                    bottomEnd = 35.dp
                 )
             )
             .background(MaterialTheme.colorScheme.primary)
