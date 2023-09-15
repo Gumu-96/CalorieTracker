@@ -49,7 +49,7 @@ fun UnitDisplay(
 
 @Preview
 @Composable
-fun UnitDisplayPreview() {
+private fun UnitDisplayPreview() {
     CalorieTrackerTheme {
         Surface {
             UnitDisplay(amount = 200, unit = "g")

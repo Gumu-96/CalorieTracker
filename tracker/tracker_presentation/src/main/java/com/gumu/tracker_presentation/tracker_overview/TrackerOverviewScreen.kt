@@ -4,14 +4,21 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
+import com.gumu.core.R
 import com.gumu.core_ui.theme.CalorieTrackerTheme
 import com.gumu.core_ui.theme.LocalSpacing
 import com.gumu.core_ui.util.UiEvent
+import com.gumu.tracker_presentation.tracker_overview.components.AddButton
 import com.gumu.tracker_presentation.tracker_overview.components.DaySelector
+import com.gumu.tracker_presentation.tracker_overview.components.ExpandableMeal
 import com.gumu.tracker_presentation.tracker_overview.components.NutrientsHeader
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -24,6 +31,7 @@ fun TrackerOverviewScreen(
     onEvent: (TrackerOverviewEvent) -> Unit
 ) {
     val spacing = LocalSpacing.current
+    val context = LocalContext.current
 
     LaunchedEffect(Unit) {
         uiEvents.collect { event ->
@@ -50,10 +58,25 @@ fun TrackerOverviewScreen(
                     .padding(spacing.spaceSmall)
             )
         }
+        items(uiState.meals) { meal ->
+            ExpandableMeal(
+                meal = meal,
+                onToggle = { onEvent(TrackerOverviewEvent.ToggleMealClick(meal)) },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                AddButton(
+                    text = stringResource(id = R.string.add_meal, meal.name.asString(context)),
+                    onClick = { onEvent(TrackerOverviewEvent.AddFoodClick(meal)) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(spacing.spaceSmall)
+                )
+            }
+        }
     }
 }
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 private fun TrackerOverviewScreenPreview() {
     CalorieTrackerTheme {
