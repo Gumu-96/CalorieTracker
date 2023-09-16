@@ -1,7 +1,9 @@
 package com.gumu.tracker_presentation.tracker_overview
 
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -11,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.gumu.core.R
 import com.gumu.core_ui.theme.CalorieTrackerTheme
 import com.gumu.core_ui.theme.LocalSpacing
@@ -20,6 +21,7 @@ import com.gumu.tracker_presentation.tracker_overview.components.AddButton
 import com.gumu.tracker_presentation.tracker_overview.components.DaySelector
 import com.gumu.tracker_presentation.tracker_overview.components.ExpandableMeal
 import com.gumu.tracker_presentation.tracker_overview.components.NutrientsHeader
+import com.gumu.tracker_presentation.tracker_overview.components.TrackedFoodItem
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 
@@ -64,6 +66,18 @@ fun TrackerOverviewScreen(
                 onToggle = { onEvent(TrackerOverviewEvent.ToggleMealClick(meal)) },
                 modifier = Modifier.fillMaxWidth()
             ) {
+                uiState.trackedFoods.filter { it.type == meal.mealType }.forEach {
+                    TrackedFoodItem(
+                        food = it,
+                        onDeleteClick = {
+                            onEvent(TrackerOverviewEvent.DeleteTrackedFoodClick(it))
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = spacing.spaceSmall)
+                    )
+                    Spacer(modifier = Modifier.height(spacing.spaceSmall))
+                }
                 AddButton(
                     text = stringResource(id = R.string.add_meal, meal.name.asString(context)),
                     onClick = { onEvent(TrackerOverviewEvent.AddFoodClick(meal)) },
