@@ -16,7 +16,6 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.ElevatedCard
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -42,7 +41,6 @@ import com.gumu.tracker_domain.model.TrackedFood
 import com.gumu.tracker_presentation.components.NutrientInfo
 import java.time.LocalDate
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TrackedFoodItem(
     food: TrackedFood,
@@ -53,7 +51,6 @@ fun TrackedFoodItem(
     val context = LocalContext.current
 
     ElevatedCard(
-        onClick = onDeleteClick,
         modifier = modifier
     ) {
         Row(
