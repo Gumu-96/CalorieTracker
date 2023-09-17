@@ -1,5 +1,6 @@
 package com.gumu.tracker_presentation.search
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,6 +9,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -18,6 +20,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -89,7 +92,10 @@ fun SearchScreen(
             SearchTextField(
                 query = uiState.query,
                 onQueryChange = { onEvent(SearchEvent.QueryChange(it)) },
-                onSearch = { onEvent(SearchEvent.Search) },
+                onSearch = {
+                    onEvent(SearchEvent.Search)
+                    keyboardController?.hide()
+                },
                 onFocusChanged = { onEvent(SearchEvent.SearchFocusChange(it.isFocused)) },
                 shouldShowHint = uiState.isHintVisible
             )
@@ -110,10 +116,22 @@ fun SearchScreen(
                                     date = LocalDate.of(year, month, dayOfMonth)
                                 )
                             )
+                            keyboardController?.hide()
                         },
                         modifier = Modifier.fillMaxWidth()
                     )
                     Spacer(modifier = Modifier.height(spacing.spaceSmall))
+                }
+            }
+        }
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            when {
+                uiState.isSearching -> CircularProgressIndicator()
+                uiState.trackableFoods.isEmpty() -> {
+                    Text(text = stringResource(id = R.string.no_results))
                 }
             }
         }

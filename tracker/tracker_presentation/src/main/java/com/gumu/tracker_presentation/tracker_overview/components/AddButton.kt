@@ -55,7 +55,7 @@ fun AddButton(
         Spacer(modifier = Modifier.width(spacing.spaceSmall))
         Text(
             text = text,
-            style = MaterialTheme.typography.labelMedium,
+            style = MaterialTheme.typography.labelLarge,
             color = color
         )
     }

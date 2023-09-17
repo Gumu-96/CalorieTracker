@@ -2,10 +2,7 @@ package com.gumu.tracker_presentation.search.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.IntrinsicSize
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
@@ -20,14 +17,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.ImeAction
@@ -38,7 +33,6 @@ import com.gumu.core.R
 import com.gumu.core_ui.theme.CalorieTrackerTheme
 import com.gumu.core_ui.theme.LocalSpacing
 
-@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun SearchTextField(
     query: String,
@@ -50,7 +44,6 @@ fun SearchTextField(
     onFocusChanged: (FocusState) -> Unit
 ) {
     val spacing = LocalSpacing.current
-    val keyboardController = LocalSoftwareKeyboardController.current
     val shadowSize = 2.dp
 
     Box(modifier = modifier) {
@@ -64,7 +57,6 @@ fun SearchTextField(
             keyboardActions = KeyboardActions(
                 onSearch = {
                     onSearch()
-                    keyboardController?.hide()
                 }
             ),
             textStyle = LocalTextStyle.current.copy(
