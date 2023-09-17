@@ -10,6 +10,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -21,11 +22,23 @@ import com.gumu.core_ui.theme.CalorieTrackerTheme
 import com.gumu.core_ui.theme.LocalSpacing
 import com.gumu.core_ui.util.UiEvent
 import com.gumu.onboarding_presentation.components.ActionButton
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 
 @Composable
 fun WelcomeScreen(
-    onNavigate: (UiEvent.Navigate) -> Unit
+    onNavigate: (UiEvent.Navigate) -> Unit,
+    uiEvents: Flow<UiEvent>
 ) {
+    LaunchedEffect(Unit) {
+        uiEvents.collect { event ->
+            when (event) {
+                is UiEvent.Navigate -> onNavigate(event)
+                else -> Unit
+            }
+        }
+    }
+
     val spacing = LocalSpacing.current
     Surface {
         Column(
@@ -53,6 +66,9 @@ fun WelcomeScreen(
 @Composable
 private fun WelcomeScreenPreview() {
     CalorieTrackerTheme {
-        WelcomeScreen {}
+        WelcomeScreen(
+            onNavigate = {},
+            uiEvents = flow {}
+        )
     }
 }

@@ -25,6 +25,7 @@ import com.gumu.onboarding_presentation.nutrient_goal.NutrientGoalViewModel
 import com.gumu.onboarding_presentation.weight.WeightScreen
 import com.gumu.onboarding_presentation.weight.WeightViewModel
 import com.gumu.onboarding_presentation.welcome.WelcomeScreen
+import com.gumu.onboarding_presentation.welcome.WelcomeViewModel
 import com.gumu.tracker_presentation.search.SearchScreen
 import com.gumu.tracker_presentation.search.SearchViewModel
 import com.gumu.tracker_presentation.tracker_overview.TrackerOverviewScreen
@@ -38,7 +39,11 @@ fun CalorieTrackerNavigation() {
     NavHost(navController = navController, startDestination = Screen.Welcome.route) {
         // Onboarding
         composable(route = Screen.Welcome.route) {
-            WelcomeScreen(onNavigate = { navController.navigate(it) })
+            val viewModel: WelcomeViewModel = hiltViewModel()
+            WelcomeScreen(
+                onNavigate = { navController.navigate(it) },
+                uiEvents = viewModel.uiEvent
+            )
         }
         composable(route = Screen.Gender.route) {
             val viewModel: GenderViewModel = hiltViewModel()
