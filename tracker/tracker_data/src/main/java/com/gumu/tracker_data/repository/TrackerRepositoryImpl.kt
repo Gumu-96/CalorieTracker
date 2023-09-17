@@ -27,7 +27,20 @@ class TrackerRepositoryImpl(
                 page = page,
                 pageSize = pageSize
             )
-            Result.success(searchDto.products.mapNotNull { it.toTrackableFood() })
+            Result.success(
+                searchDto.products
+                    .filter {
+                        // Filter introduced to remove any foods for which their calories value
+                        // doesn't match the calculation done with it's nutrients info
+                        val calculatedCalories = with(it.nutriments) {
+                            carbohydrates100g * 4f + proteins100g * 4f + fat100g * 9f
+                        }
+                        val lowerBound = calculatedCalories * 0.99
+                        val upperBound = calculatedCalories * 1.01
+                        it.nutriments.energyKcal100g in (lowerBound..upperBound)
+                    }
+                    .mapNotNull { it.toTrackableFood() }
+            )
         } catch (ex: Exception) {
             ex.printStackTrace()
             Result.failure(ex)
