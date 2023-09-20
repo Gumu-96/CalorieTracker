@@ -64,10 +64,19 @@ dependencies {
     testImplementation libs.junit
     testImplementation libs.androidx.test.ext.junit
     testImplementation libs.coroutines.test
+    testImplementation libs.mockk
+    testImplementation libs.turbine
+    testImplementation libs.truth
+    testImplementation libs.mockwebserver
 
     androidTestImplementation libs.androidx.test.ext.junit
     androidTestImplementation libs.espresso.core
     androidTestImplementation libs.coroutines.test
     androidTestImplementation platform(libs.compose.bom)
     androidTestImplementation libs.ui.test.junit4
+    androidTestImplementation libs.mockk
+    androidTestImplementation libs.turbine
+    androidTestImplementation libs.truth
+    androidTestImplementation libs.mockwebserver
+    androidTestImplementation libs.hilt.testing
 }
