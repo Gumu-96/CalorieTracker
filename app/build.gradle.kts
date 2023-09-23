@@ -17,7 +17,7 @@ android {
         versionCode = ProjectConfig.versionCode
         versionName = ProjectConfig.versionName
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.gumu.calorietracker.HiltTestRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -48,6 +48,13 @@ android {
     packaging {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+        }
+    }
+    testOptions {
+        packaging {
+            jniLibs {
+                useLegacyPackaging = true
+            }
         }
     }
 }
@@ -113,11 +120,12 @@ dependencies {
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))
-    androidTestImplementation(libs.mockk)
+    androidTestImplementation(libs.mockk.android)
     androidTestImplementation(libs.turbine)
     androidTestImplementation(libs.truth)
     androidTestImplementation(libs.mockwebserver)
     androidTestImplementation(libs.hilt.testing)
+    kaptAndroidTest(libs.hilt.compiler)
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.compose.tooling)
     debugImplementation(libs.ui.test.manifest)

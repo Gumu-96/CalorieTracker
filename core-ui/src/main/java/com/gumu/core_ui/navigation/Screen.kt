@@ -1,7 +1,7 @@
 package com.gumu.core_ui.navigation
 
 sealed class Screen(val route: String) {
-    private val baseRoute: String =
+    val baseRoute: String =
         route.substring(0, route.indexOf('/').takeIf { it > -1 } ?: route.length)
 
     // Onboarding
