@@ -106,9 +106,18 @@ dependencies {
 
     // Testing
     testImplementation(libs.junit)
+    testImplementation(libs.mockk)
+    testImplementation(libs.turbine)
+    testImplementation(libs.truth)
+    testImplementation(libs.mockwebserver)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(platform(libs.compose.bom))
+    androidTestImplementation(libs.mockk)
+    androidTestImplementation(libs.turbine)
+    androidTestImplementation(libs.truth)
+    androidTestImplementation(libs.mockwebserver)
+    androidTestImplementation(libs.hilt.testing)
     androidTestImplementation(libs.ui.test.junit4)
     debugImplementation(libs.compose.tooling)
     debugImplementation(libs.ui.test.manifest)
